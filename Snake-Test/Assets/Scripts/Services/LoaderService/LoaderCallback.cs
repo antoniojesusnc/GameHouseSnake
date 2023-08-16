@@ -12,6 +12,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using GameHouse.Snake.Services;
 using UnityEngine;
 
 /*
@@ -24,7 +25,7 @@ public class LoaderCallback : MonoBehaviour {
     private void Update() {
         if (firstUpdate) {
             firstUpdate = false;
-            Loader.LoaderCallback();
+            ServiceLocator.GetService<ILoaderService>().LoaderCallback();
         }
     }
 }
