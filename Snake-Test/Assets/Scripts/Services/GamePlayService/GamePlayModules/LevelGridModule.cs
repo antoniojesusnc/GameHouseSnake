@@ -15,48 +15,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey;
 using GameHouse.Snake.GamePlay;
+using GameHouse.Snake.Services;
 
 public class LevelGridModule {
 
-    private Vector2Int foodGridPosition;
-    private GameObject foodGameObject;
-    private int width;
-    private int height;
-    private Snake snake;
+    public int Width { get; private set; }
+    public int Height { get; private set; }
 
     public LevelGridModule()
     {
         
     }
 
-    public void Setup(int width, int height, Snake snake) {
-        this.snake = snake;
+    public void Setup(int width, int height) {
+        Width = width;
+        Height = height;
     }
-
-    
-
-    public bool TrySnakeEatFood(Vector2Int snakeGridPosition) {
-        if (snakeGridPosition == foodGridPosition) {
-            Object.Destroy(foodGameObject);
-            SpawnFood();
-            Score.AddScore();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public Vector2Int ValidateGridPosition(Vector2Int gridPosition) {
         if (gridPosition.x < 0) {
-            gridPosition.x = width - 1;
+            gridPosition.x = Width - 1;
         }
-        if (gridPosition.x > width - 1) {
+        if (gridPosition.x > Width - 1) {
             gridPosition.x = 0;
         }
         if (gridPosition.y < 0) {
-            gridPosition.y = height - 1;
+            gridPosition.y = Height - 1;
         }
-        if (gridPosition.y > height - 1) {
+        if (gridPosition.y > Height - 1) {
             gridPosition.y = 0;
         }
         return gridPosition;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,11 @@ namespace GameHouse.Snake.Sounds
     public class SoundServiceGameObject : MonoBehaviour
     {
         private List<AudioSource> _audioSources = new List<AudioSource>();
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
 
         public AudioSource GetOrInstantiateAudioSource()
         {

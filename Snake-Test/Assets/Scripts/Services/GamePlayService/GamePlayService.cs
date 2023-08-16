@@ -1,30 +1,34 @@
 using GameHouse.Snake.GamePlay;
+using GameHouse.Snake.Pool;
 using UnityEngine;
 
 namespace GameHouse.Snake.Services
 {
     public class GamePlayService : IGamePlayService
     {
-        private LevelGridModule _levelGridModule = new LevelGridModule();
-        private FoodSpawnerModule _foodSpawnerModule = new FoodSpawnerModule();
+        public LevelGridModule LevelGridModule { get; private set; }
+        public FoodSpawnerModule FoodSpawnerModule { get; private set; }
 
-        private GamePlay.Snake _snake;
+        public GamePlay.Snake Snake { get; private set; }
 
         private IClockService _clockService;
         public void Init()
         {
             _clockService = ServiceLocator.GetService<IClockService>();
             
-            _levelGridModule = new LevelGridModule();
             Score.InitializeStatic();
-            Time.timeScale = 1f;
         }
 
         public void BeginLevel()
         {
+            LevelGridModule = new LevelGridModule();
+            FoodSpawnerModule = new FoodSpawnerModule();
+
+            LevelGridModule.Setup(20, 20);
+            
             InstantiateSnake();
-            _levelGridModule.Setup(20, 20, _snake);
-            _snake.Setup(_levelGridModule);
+            
+            FoodSpawnerModule.BeginGame();
             
             ServiceLocator.GetService<IClockService>().OnUpdate += OnUpdate;
         }
@@ -36,7 +40,12 @@ namespace GameHouse.Snake.Services
 
         private void InstantiateSnake()
         {
-            var snake = ServiceLocator.GetService<IPoolService>().InitObjectToPool()
+            if (!ServiceLocator.GetService<IPoolService>().TryGetObjectToPool(PoolTypes.Snake, out var snake))
+            {
+                Debug.LogError("No Object Snake found in the Pool");
+            }
+            
+            Snake = snake.GetComponent<GamePlay.Snake>();
         }
         
         private void OnUpdate(float deltatime)
@@ -55,12 +64,12 @@ namespace GameHouse.Snake.Services
             _clockService.SetPause(false);
         }
 
-        public void PauseGame() {
+        private void PauseGame() {
             PauseWindow.ShowStatic();
             _clockService.SetPause(true);
         }
         
-        public static void SnakeDied() {
+        public void SnakeDied() {
             bool isNewHighscore = Score.TrySetNewHighscore();
             GameOverWindow.ShowStatic(isNewHighscore);
             ScoreWindow.HideStatic();

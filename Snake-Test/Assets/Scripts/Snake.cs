@@ -42,16 +42,18 @@ namespace GameHouse.Snake.GamePlay
         private Vector2Int gridPosition;
         private float gridMoveTimer;
         private float gridMoveTimerMax;
-        private LevelGridModule _levelGridModule;
+        
+        
         private int snakeBodySize;
         private List<SnakeMovePosition> snakeMovePositionList;
         private List<SnakeBodyPart> snakeBodyPartList;
 
         private ISoundService _soundService;
+        private LevelGridModule _levelGridModule;
+        private FoodSpawnerModule _foodSpawnerModule;
 
         private void Awake()
         {
-
             _soundService = ServiceLocator.GetService<ISoundService>();
 
             gridPosition = new Vector2Int(10, 10);
@@ -65,11 +67,9 @@ namespace GameHouse.Snake.GamePlay
             snakeBodyPartList = new List<SnakeBodyPart>();
 
             state = State.Alive;
-        }
 
-        public void Setup(LevelGridModule levelGridModule)
-        {
-            this._levelGridModule = levelGridModule;
+            _levelGridModule = ServiceLocator.GetService<IGamePlayService>().LevelGridModule;
+            _foodSpawnerModule = ServiceLocator.GetService<IGamePlayService>().FoodSpawnerModule;
         }
 
         private void Update()
@@ -161,7 +161,7 @@ namespace GameHouse.Snake.GamePlay
 
                 gridPosition = _levelGridModule.ValidateGridPosition(gridPosition);
 
-                bool snakeAteFood = _levelGridModule.TrySnakeEatFood(gridPosition);
+                bool snakeAteFood = _foodSpawnerModule.TrySnakeEatFood(gridPosition);
                 if (snakeAteFood)
                 {
                     // Snake ate food, grow body
@@ -185,7 +185,7 @@ namespace GameHouse.Snake.GamePlay
                         // Game Over!
                         //CMDebug.TextPopup("DEAD!", transform.position);
                         state = State.Dead;
-                        GameHandler.SnakeDied();
+                        ServiceLocator.GetService<IGamePlayService>().SnakeDied();
                         _soundService.PlaySound(SoundTypes.SnakeDie);
                     }
                 }

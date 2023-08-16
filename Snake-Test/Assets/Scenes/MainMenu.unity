@@ -2821,6 +2821,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2688479faa2af8b4d9c3aed6a997983c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _snakePrefab: {fileID: 3098163965396880000, guid: d78a6e6c9afa6384782f75e75690939a, type: 3}
+  _snakeBodyPrefab: {fileID: 0}
+  _foodPrefab: {fileID: 2097125978535595925, guid: 9b0e910a21c38f347b9175113d3a7555, type: 3}
 --- !u!4 &1821102478
 Transform:
   m_ObjectHideFlags: 0
