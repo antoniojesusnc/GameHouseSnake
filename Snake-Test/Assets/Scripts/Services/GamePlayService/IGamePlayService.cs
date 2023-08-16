@@ -4,10 +4,10 @@ namespace GameHouse.Snake.Services
 {
     public interface IGamePlayService : IService
     {
-        FoodSpawnerModule FoodSpawnerModule { get; }
-        LevelGridModule LevelGridModule { get; }
+        IFoodSpawnerModule FoodSpawnerModule { get; }
+        ILevelGridModule LevelGridModule { get; }
         
-        GamePlay.Snake Snake { get; }
+        ISnake Snake { get; }
         
         void ResumeGame();
         

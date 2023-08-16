@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameHouse.Snake.GamePlay
 {
-    public class FoodSpawnerModule
+    public class FoodSpawnerModule : IFoodSpawnerModule
     {
         private Vector2Int foodGridPosition;
         private GameObject foodGameObject;

@@ -17,7 +17,8 @@ using CodeMonkey;
 using GameHouse.Snake.GamePlay;
 using GameHouse.Snake.Services;
 
-public class LevelGridModule {
+public class LevelGridModule : ILevelGridModule
+{
 
     public int Width { get; private set; }
     public int Height { get; private set; }

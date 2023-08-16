@@ -6,10 +6,10 @@ namespace GameHouse.Snake.Services
 {
     public class GamePlayService : IGamePlayService
     {
-        public LevelGridModule LevelGridModule { get; private set; }
-        public FoodSpawnerModule FoodSpawnerModule { get; private set; }
+        public ILevelGridModule LevelGridModule { get; private set; }
+        public IFoodSpawnerModule FoodSpawnerModule { get; private set; }
 
-        public GamePlay.Snake Snake { get; private set; }
+        public ISnake Snake { get; private set; }
 
         private IClockService _clockService;
         public void Init()
@@ -43,7 +43,7 @@ namespace GameHouse.Snake.Services
                 Debug.LogError("No Object Snake found in the Pool");
             }
             
-            Snake = snake.GetComponent<GamePlay.Snake>();
+            Snake = snake.GetComponent<ISnake>();
         }
         
         private void OnUpdate(float deltatime)
