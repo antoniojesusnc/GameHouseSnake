@@ -12,6 +12,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using GameHouse.Snake.Services;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,13 +22,16 @@ public class ScoreWindow : MonoBehaviour {
 
     private Text scoreText;
 
+    private IScoreService _scoreServiceService;
+    
     private void Awake() {
         instance = this;
         scoreText = transform.Find("scoreText").GetComponent<Text>();
+        _scoreServiceService = ServiceLocator.GetService<IScoreService>();
     }
 
     private void Start() {
-        Score.OnHighscoreChanged += Score_OnHighscoreChanged;
+        _scoreServiceService.OnHighscoreChanged += Score_OnHighscoreChanged;
         UpdateHighscore();
     }
 
@@ -36,11 +40,11 @@ public class ScoreWindow : MonoBehaviour {
     }
 
     private void Update() {
-        scoreText.text = Score.GetScore().ToString();
+        scoreText.text = _scoreServiceService.GetScore().ToString();
     }
 
     private void UpdateHighscore() {
-        int highscore = Score.GetHighscore();
+        int highscore = _scoreServiceService.GetHighscore();
         transform.Find("highscoreText").GetComponent<Text>().text = "HIGHSCORE\n" + highscore.ToString();
     }
 

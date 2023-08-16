@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 using GameHouse.Snake.Extensions;
+using GameHouse.Snake.Scenes;
 using GameHouse.Snake.Services;
 
 public class PauseWindow : MonoBehaviour {
@@ -27,10 +28,12 @@ public class PauseWindow : MonoBehaviour {
         transform.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         transform.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
 
-        transform.Find("resumeBtn").GetComponent<Button_UI>().ClickFunc = () => ServiceLocator.GetService<IGamePlayService>().ResumeGame();
+        transform.Find("resumeBtn").GetComponent<Button_UI>().ClickFunc = 
+            () => ServiceLocator.GetService<IGamePlayService>().ResumeGame();
         transform.Find("resumeBtn").GetComponent<Button_UI>().AddButtonSounds();
 
-        transform.Find("mainMenuBtn").GetComponent<Button_UI>().ClickFunc = () => Loader.Load(Loader.Scene.MainMenu);
+        transform.Find("mainMenuBtn").GetComponent<Button_UI>().ClickFunc = 
+            () => ServiceLocator.GetService<ILoaderService>().Load(SceneTypes.MainMenu);
         transform.Find("mainMenuBtn").GetComponent<Button_UI>().AddButtonSounds();
 
         Hide();

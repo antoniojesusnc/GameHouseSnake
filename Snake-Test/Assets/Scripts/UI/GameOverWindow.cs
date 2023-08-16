@@ -15,6 +15,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils;
+using GameHouse.Snake.Scenes;
+using GameHouse.Snake.Services;
 
 public class GameOverWindow : MonoBehaviour {
 
@@ -24,7 +26,7 @@ public class GameOverWindow : MonoBehaviour {
         instance = this;
 
         transform.Find("retryBtn").GetComponent<Button_UI>().ClickFunc = () => { 
-            Loader.Load(Loader.Scene.GameScene);
+            ServiceLocator.GetService<ILoaderService>().Load(SceneTypes.GameScene);
         };
 
         Hide();
@@ -35,8 +37,10 @@ public class GameOverWindow : MonoBehaviour {
 
         transform.Find("newHighscoreText").gameObject.SetActive(isNewHighscore);
 
-        transform.Find("scoreText").GetComponent<Text>().text = Score.GetScore().ToString();
-        transform.Find("highscoreText").GetComponent<Text>().text = "HIGHSCORE " + Score.GetHighscore();
+        var scoreService = ServiceLocator.GetService<IScoreService>();
+        transform.Find("scoreText").GetComponent<Text>().text = 
+            scoreService.GetScore().ToString();
+        transform.Find("highscoreText").GetComponent<Text>().text = "HIGHSCORE " + scoreService.GetHighscore();
     }
 
     private void Hide() {
