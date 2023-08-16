@@ -1,4 +1,4 @@
-namespace GameHouse.Snake
+namespace GameHouse.Snake.Services
 {
     public interface IService
     {

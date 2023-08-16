@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.Assertions;
 
-namespace GameHouse.Snake
+namespace GameHouse.Snake.Services
 {
     public class ServiceLocator
     {
@@ -15,9 +15,10 @@ namespace GameHouse.Snake
                            $"Service {type} already registered");
 
             _services.Add(type, service);
+            service.Init();
         }
 
-        public T GetService<T>() where T : IService
+        public static T GetService<T>() where T : IService
         {
             var type = typeof(T);
             if (!_services.TryGetValue(type, out var service))
