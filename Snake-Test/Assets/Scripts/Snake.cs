@@ -15,6 +15,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey;
 using CodeMonkey.Utils;
+using GameHouse.Snake.Services;
+using GameHouse.Snake.Sounds;
 
 public class Snake : MonoBehaviour {
 
@@ -40,11 +42,13 @@ public class Snake : MonoBehaviour {
     private List<SnakeMovePosition> snakeMovePositionList;
     private List<SnakeBodyPart> snakeBodyPartList;
 
-    public void Setup(LevelGrid levelGrid) {
-        this.levelGrid = levelGrid;
-    }
+    private ISoundService _soundService;
 
-    private void Awake() {
+    private void Awake()
+    {
+
+        _soundService = ServiceLocator.GetService<ISoundService>();
+        
         gridPosition = new Vector2Int(10, 10);
         gridMoveTimerMax = .2f;
         gridMoveTimer = gridMoveTimerMax;
@@ -58,6 +62,10 @@ public class Snake : MonoBehaviour {
         state = State.Alive;
     }
 
+    public void Setup(LevelGrid levelGrid) {
+        this.levelGrid = levelGrid;
+    }
+    
     private void Update() {
         switch (state) {
         case State.Alive:
@@ -125,7 +133,7 @@ public class Snake : MonoBehaviour {
                 // Snake ate food, grow body
                 snakeBodySize++;
                 CreateSnakeBodyPart();
-                SoundManager.PlaySound(SoundManager.Sound.SnakeEat);
+                _soundService.PlaySound(SoundTypes.SnakeEat);
             }
 
             if (snakeMovePositionList.Count >= snakeBodySize + 1) {
@@ -141,7 +149,7 @@ public class Snake : MonoBehaviour {
                     //CMDebug.TextPopup("DEAD!", transform.position);
                     state = State.Dead;
                     GameHandler.SnakeDied();
-                    SoundManager.PlaySound(SoundManager.Sound.SnakeDie);
+                    _soundService.PlaySound(SoundTypes.SnakeDie);
                 }
             }
 

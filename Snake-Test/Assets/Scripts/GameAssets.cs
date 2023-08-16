@@ -13,6 +13,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameHouse.Snake.Sounds;
 using UnityEngine;
 
 public class GameAssets : MonoBehaviour
@@ -32,7 +33,7 @@ public class GameAssets : MonoBehaviour
 
     [Serializable]
     public class SoundAudioClip {
-        public SoundManager.Sound sound;
+        public SoundTypes sound;
         public AudioClip audioClip;
     }
 }

@@ -14,6 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
+using GameHouse.Snake.Extensions;
 
 public class PauseWindow : MonoBehaviour {
 
