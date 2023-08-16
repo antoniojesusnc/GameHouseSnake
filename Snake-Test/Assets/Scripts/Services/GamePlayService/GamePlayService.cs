@@ -15,8 +15,6 @@ namespace GameHouse.Snake.Services
         public void Init()
         {
             _clockService = ServiceLocator.GetService<IClockService>();
-            
-            Score.InitializeStatic();
         }
 
         public void BeginLevel()
@@ -70,7 +68,7 @@ namespace GameHouse.Snake.Services
         }
         
         public void SnakeDied() {
-            bool isNewHighscore = Score.TrySetNewHighscore();
+            bool isNewHighscore = ServiceLocator.GetService<IScoreService>().TrySetNewHighscore();
             GameOverWindow.ShowStatic(isNewHighscore);
             ScoreWindow.HideStatic();
         }

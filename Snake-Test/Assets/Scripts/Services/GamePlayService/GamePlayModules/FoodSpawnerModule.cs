@@ -9,10 +9,12 @@ namespace GameHouse.Snake.GamePlay
         private GameObject foodGameObject;
 
         private IGamePlayService _gamePlayService;
+        private IScoreService _scoreService;
         
         public FoodSpawnerModule()
         {
             _gamePlayService = ServiceLocator.GetService<IGamePlayService>();
+            _scoreService = ServiceLocator.GetService<IScoreService>();
         }
         
         public void BeginGame()
@@ -34,7 +36,7 @@ namespace GameHouse.Snake.GamePlay
             if (snakeGridPosition == foodGridPosition) {
                 Object.Destroy(foodGameObject);
                 SpawnFood();
-                Score.AddScore();
+                _scoreService.AddScore();
                 return true;
             } else {
                 return false;

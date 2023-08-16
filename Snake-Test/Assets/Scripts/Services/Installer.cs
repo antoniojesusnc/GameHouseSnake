@@ -22,6 +22,8 @@ namespace GameHouse.Snake.Services
             InitPoolItems();
             
             
+            ServiceLocator.RegisterService<IScoreService>(new ScoreService());
+            ServiceLocator.RegisterService<ILoaderService>(new LoaderService());
             ServiceLocator.RegisterService<IGamePlayService>(new GamePlayService());
         }
 
