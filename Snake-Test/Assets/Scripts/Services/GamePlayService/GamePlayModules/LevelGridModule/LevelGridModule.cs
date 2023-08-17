@@ -1,21 +1,4 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using CodeMonkey;
-using GameHouse.Snake.GamePlay;
-using GameHouse.Snake.Services;
+﻿using UnityEngine;
 
 public class LevelGridModule : ILevelGridModule
 {

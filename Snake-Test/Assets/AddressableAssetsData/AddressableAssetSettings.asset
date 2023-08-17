@@ -46,6 +46,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10289e8a9ce4287479bf25026cc9f574, type: 2}
   - {fileID: 11400000, guid: e7d6a868dd629e546a93a8c3801a1adf, type: 2}
   - {fileID: 11400000, guid: 30963bb327c06004c81a504c92e85ce8, type: 2}
+  - {fileID: 11400000, guid: 3f6827ae6430fc5439ab5e173351b152, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -90,6 +91,7 @@ MonoBehaviour:
     - snake
     - food
     - world
+    - config
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: a5b4b779645613d41855128b1d80c41b, type: 2}

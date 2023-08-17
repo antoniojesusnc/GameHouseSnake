@@ -1,3 +1,4 @@
+using GameHouse.Snake.Config;
 using GameHouse.Snake.GamePlay;
 using GameHouse.Snake.Pool;
 using UnityEngine;
@@ -6,15 +7,23 @@ namespace GameHouse.Snake.Services
 {
     public class GamePlayService : IGamePlayService
     {
+        private const string GAME_CONFIG_ADDRESS_NAME = "GamePlayConfig";
+        
         public ILevelGridModule LevelGridModule { get; private set; }
         public IFoodSpawnerModule FoodSpawnerModule { get; private set; }
 
         public ISnake Snake { get; private set; }
 
         private IClockService _clockService;
+
+        private GamePlayConfig _gamePlayConfig;
+        
         public void Init()
         {
             _clockService = ServiceLocator.GetService<IClockService>();
+            
+            ServiceLocator.GetService<IAssetService>().
+                           LoadWithAddress<GamePlayConfig>(GAME_CONFIG_ADDRESS_NAME, (config) => _gamePlayConfig = config);
         }
 
         public void BeginLevel()
@@ -22,7 +31,7 @@ namespace GameHouse.Snake.Services
             LevelGridModule = new LevelGridModule();
             FoodSpawnerModule = new FoodSpawnerModule();
 
-            LevelGridModule.Setup(20, 20);
+            LevelGridModule.Setup(_gamePlayConfig.GridSize.x, _gamePlayConfig.GridSize.y);
             
             InstantiateSnake();
             
