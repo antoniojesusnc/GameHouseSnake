@@ -1,18 +1,14 @@
+using GameHouse.Snake.Config;
 using GameHouse.Snake.Pool;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace GameHouse.Snake.Services
 {
     public class Installer : MonoBehaviour
     {
-        [Header("Pool Objects")]
-        [SerializeField] 
-        private GamePlay.Snake _snakePrefab;
-        [SerializeField] 
-        private GameObject _snakeBodyPrefab;
-        
-        [SerializeField] 
-        private GameObject _foodPrefab;
+        [Header("Pool Objects"), SerializeField] 
+        private InitialPoolConfig _poolConfig;
         
         void Awake()
         {
@@ -30,9 +26,27 @@ namespace GameHouse.Snake.Services
         private void InitPoolItems()
         {
             var poolService = ServiceLocator.GetService<IPoolService>();
-            poolService.InitObjectToPool(PoolTypes.Snake, _snakePrefab.gameObject, 1);
-            poolService.InitObjectToPool(PoolTypes.SnakeBody, _snakeBodyPrefab, 10);
-            poolService.InitObjectToPool(PoolTypes.Food, _foodPrefab, 1);
+            
+            if (_poolConfig.PoolItemsFromAddressable?.Count > 0)
+            {
+                for (int i = 0; i < _poolConfig.PoolItemsFromAddressable.Count; i++)
+                {
+                    var poolItem = _poolConfig.PoolItemsFromAddressable[i];
+                    
+                    poolItem.Reference.LoadAssetAsync<GameObject>().Completed += 
+                        (operationHandle => poolService.InitObjectToPool(poolItem.PoolType, poolItem.Reference.Asset, poolItem.InitialAmount));
+                }
+            }
+            
+            if (_poolConfig.PoolItemsGameObject?.Count > 0)
+            {
+                for (int i = 0; i < _poolConfig.PoolItemsGameObject.Count; i++)
+                {
+                    var poolItem = _poolConfig.PoolItemsGameObject[i];
+                    poolService.InitObjectToPool(poolItem.PoolType, poolItem.Reference, poolItem.InitialAmount);
+                }
+            }
+
         }
     }
 }
