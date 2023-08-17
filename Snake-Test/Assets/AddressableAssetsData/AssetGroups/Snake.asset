@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Snake
+  m_EditorClassIdentifier: 
+  m_GroupName: Snake
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 93b1e59b1b690dd46984ac51acdfd4d0
+  m_SerializeEntries:
+  - m_GUID: 699ec0eb3513a9e4d9ec52b08a8544ba
+    m_Address: SnakeBody
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - snake
+  - m_GUID: a6389c1368f3c0348a4a4d02194be695
+    m_Address: SnakeHead
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - snake
+  - m_GUID: d78a6e6c9afa6384782f75e75690939a
+    m_Address: Snake
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - snake
+  - m_GUID: 84edcc5fcc933024595f8d0fd1d741d4
+    m_Address: SnakeBody
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - snake
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 58b0215a6b0f5334e8bd458f5ac486bd, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 556626108be86484ea92038f25ae4895, type: 2}
+    - {fileID: 11400000, guid: 01c8cb2c163dee348a2f988f34c1b213, type: 2}
