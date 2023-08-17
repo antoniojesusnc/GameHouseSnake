@@ -1,3 +1,4 @@
+using GameHouse.Snake.Pool;
 using GameHouse.Snake.Services;
 using UnityEngine;
 
@@ -22,16 +23,28 @@ namespace GameHouse.Snake.GamePlay
             SpawnFood();
         }
         
-        public void SpawnFood() {
-            do {
-                foodGridPosition = new Vector2Int(Random.Range(0, _gamePlayService.LevelGridModule.Width), Random.Range(0, _gamePlayService.LevelGridModule.Height));
-            } while (_gamePlayService.Snake.GetFullSnakeGridPositionList().IndexOf(foodGridPosition) != -1);
+        public void SpawnFood()
+        {
 
-            foodGameObject = new GameObject("Food", typeof(SpriteRenderer));
-            foodGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.i.foodSprite;
+            if (!ServiceLocator.GetService<IPoolService>().TryGetObjectToPool(PoolTypes.Food, out foodGameObject))
+            {
+                Debug.LogError("No Object Snake found in the Pool");
+                return;
+            }
+            foodGridPosition = GetPosition();
             foodGameObject.transform.position = new Vector3(foodGridPosition.x, foodGridPosition.y);
         }
-        
+
+        private Vector2Int GetPosition()
+        {
+            Vector2Int newFoodPosition;
+            do {
+                newFoodPosition = new Vector2Int(Random.Range(0, _gamePlayService.LevelGridModule.Width), Random.Range(0, _gamePlayService.LevelGridModule.Height));
+            } while (_gamePlayService.Snake.GetFullSnakeGridPositionList().IndexOf(newFoodPosition) != -1);
+
+            return newFoodPosition;
+        }
+
         public bool TrySnakeEatFood(Vector2Int snakeGridPosition) {
             if (snakeGridPosition == foodGridPosition) {
                 Object.Destroy(foodGameObject);

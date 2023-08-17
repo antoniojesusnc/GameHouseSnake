@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using GameHouse.Snake.Pool;
+using GameHouse.Snake.Services;
+using UnityEngine;
 
 namespace GameHouse.Snake.GamePlay
 {
@@ -9,9 +11,11 @@ namespace GameHouse.Snake.GamePlay
 
         public SnakeBodyPart()
         {
-            GameObject snakeBodyGameObject = new GameObject("SnakeBody", typeof(SpriteRenderer));
-            snakeBodyGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.i.snakeBodySprite;
-            snakeBodyGameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            if (!ServiceLocator.GetService<IPoolService>().TryGetObjectToPool(PoolTypes.SnakeBody, out var snakeBodyGameObject))
+            {
+                Debug.LogError("No Object Snake found in the Pool");
+                return;
+            }
             transform = snakeBodyGameObject.transform;
         }
 

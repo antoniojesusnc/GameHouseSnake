@@ -223,12 +223,5 @@ namespace GameHouse.Snake.GamePlay
 
             return gridPositionList;
         }
-
-
-
-
-        /*
-         * Handles a Single Snake Body Part
-         * */
     }
 }

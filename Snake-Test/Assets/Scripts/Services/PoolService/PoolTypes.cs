@@ -5,5 +5,6 @@ namespace GameHouse.Snake.Pool
         Snake,
         SnakeBody,
         Food,
+        World
     }
 }

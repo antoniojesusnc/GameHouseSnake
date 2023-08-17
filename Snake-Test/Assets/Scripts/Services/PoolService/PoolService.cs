@@ -14,9 +14,9 @@ namespace GameHouse.Snake.Services
            
         }
 
-        public void InitObjectToPool(PoolTypes poolType, GameObject gameObject, int initialValue)
+        public void InitObjectToPool(PoolTypes poolType, Object gameObject, int initialValue)
         {
-            _poolObject.Add(poolType, new ObjectPool<GameObject>(() => CreatePoolItem(gameObject), defaultCapacity: initialValue));   
+            _poolObject.Add(poolType, new ObjectPool<GameObject>(() => CreatePoolItem(gameObject as GameObject), defaultCapacity: initialValue));   
         }
         private GameObject CreatePoolItem(GameObject gameObject)
         {

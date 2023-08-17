@@ -41,6 +41,7 @@ namespace GameHouse.Snake.Services
             if (!ServiceLocator.GetService<IPoolService>().TryGetObjectToPool(PoolTypes.Snake, out var snake))
             {
                 Debug.LogError("No Object Snake found in the Pool");
+                return;
             }
             
             Snake = snake.GetComponent<ISnake>();
