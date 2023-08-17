@@ -4,8 +4,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "GameHouse.Snake",
-        "CodeMonkey"
+        "CodeMonkey",
+        "GameHouse.Snake.Runtime"
     ],
     "includePlatforms": [
         "Editor"
