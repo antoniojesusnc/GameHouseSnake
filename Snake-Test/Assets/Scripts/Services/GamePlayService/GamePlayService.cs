@@ -34,7 +34,7 @@ namespace GameHouse.Snake.Services
             LevelGridModule.Setup(_gamePlayConfig.GridSize.x, _gamePlayConfig.GridSize.y);
             
             InstantiateSnake();
-            
+            Snake.Init(_gamePlayConfig);
             FoodSpawnerModule.BeginGame();
             
             ServiceLocator.GetService<IClockService>().OnUpdate += OnUpdate;

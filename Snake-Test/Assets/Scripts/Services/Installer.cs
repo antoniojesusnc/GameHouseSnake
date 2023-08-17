@@ -9,9 +9,9 @@ namespace GameHouse.Snake.Services
     {
         void Awake()
         {
-            ServiceLocator.RegisterService<ISoundService>(new SoundService());
             ServiceLocator.RegisterService<IClockService>(new ClockService());
             ServiceLocator.RegisterService<IAssetService>(new AssetService());
+            ServiceLocator.RegisterService<ISoundService>(new SoundService());
             ServiceLocator.RegisterService<IPoolService>(new PoolService());
 
             ServiceLocator.RegisterService<IScoreService>(new ScoreService());

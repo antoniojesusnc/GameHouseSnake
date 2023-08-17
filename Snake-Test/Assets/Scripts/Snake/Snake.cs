@@ -29,7 +29,7 @@ namespace GameHouse.Snake.GamePlay
         private ILevelGridModule _levelGridModule;
         private IFoodSpawnerModule _foodSpawnerModule;
 
-        private void Init(GamePlayConfig gamePlayConfig)
+        public void Init(GamePlayConfig gamePlayConfig)
         {
             _soundService = ServiceLocator.GetService<ISoundService>();
 

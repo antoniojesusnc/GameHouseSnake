@@ -27,6 +27,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - config
+  - m_GUID: 829b450514f18b04da8751ef77916f6a
+    m_Address: SoundConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - config
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 58b0215a6b0f5334e8bd458f5ac486bd, type: 2}
   m_SchemaSet:
