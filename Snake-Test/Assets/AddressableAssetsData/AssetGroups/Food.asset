@@ -17,13 +17,13 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: fcf4347938c41d143a9a6e6a6f9d4b6d
   m_SerializeEntries:
-  - m_GUID: c3bd1ffb8de1fa441a845a659442868c
-    m_Address: FoodApple
+  - m_GUID: 9b0e910a21c38f347b9175113d3a7555
+    m_Address: Food
     m_ReadOnly: 0
     m_SerializedLabels:
     - food
-  - m_GUID: 9b0e910a21c38f347b9175113d3a7555
-    m_Address: Food
+  - m_GUID: ec277022386039345b1f5481996a157d
+    m_Address: FoodSpriteAtlas
     m_ReadOnly: 0
     m_SerializedLabels:
     - food
