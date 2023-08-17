@@ -649,6 +649,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -722,6 +723,19 @@ Transform:
   m_Father: {fileID: 1191580472}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94fd6199ec1434f907af2de29b7dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSchemeType: 3
 --- !u!1 &695850043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,6 +1359,7 @@ GameObject:
   - component: {fileID: 1483782803}
   - component: {fileID: 1483782802}
   - component: {fileID: 1483782801}
+  - component: {fileID: 1483782804}
   m_Layer: 0
   m_Name: highscoreText
   m_TagString: Untagged
@@ -1431,6 +1446,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483782799}
   m_CullTransparentMesh: 0
+--- !u!114 &1483782804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483782799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94fd6199ec1434f907af2de29b7dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSchemeType: 5
 --- !u!1 &1562043905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,6 +1937,7 @@ GameObject:
   - component: {fileID: 2141951960}
   - component: {fileID: 2141951959}
   - component: {fileID: 2141951958}
+  - component: {fileID: 2141951961}
   m_Layer: 0
   m_Name: scoreText
   m_TagString: Untagged
@@ -1993,3 +2022,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141951956}
   m_CullTransparentMesh: 0
+--- !u!114 &2141951961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141951956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94fd6199ec1434f907af2de29b7dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSchemeType: 4

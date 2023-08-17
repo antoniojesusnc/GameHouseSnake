@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 110250631}
   - component: {fileID: 110250630}
   - component: {fileID: 110250629}
+  - component: {fileID: 110250632}
   m_Layer: 0
   m_Name: snakeText
   m_TagString: Untagged
@@ -375,6 +376,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110250627}
   m_CullTransparentMesh: 0
+--- !u!114 &110250632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110250627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94fd6199ec1434f907af2de29b7dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSchemeType: 1
 --- !u!1 &138269882
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,6 +610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 243426375}
   - component: {fileID: 243426376}
+  - component: {fileID: 243426377}
   m_Layer: 0
   m_Name: howToPlayBtn
   m_TagString: Untagged
@@ -646,6 +661,19 @@ MonoBehaviour:
   hoverBehaviour_Move: 0
   hoverBehaviour_Move_Amount: {x: 0, y: 0}
   triggerMouseOutFuncOnClick: 1
+--- !u!114 &243426377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243426374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94fd6199ec1434f907af2de29b7dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSchemeType: 2
 --- !u!850595691 &331003816
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -920,6 +948,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -993,6 +1022,19 @@ Transform:
   m_Father: {fileID: 1191580472}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94fd6199ec1434f907af2de29b7dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSchemeType: 0
 --- !u!1 &527698231
 GameObject:
   m_ObjectHideFlags: 0
@@ -2845,6 +2887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1858466078}
   - component: {fileID: 1858466079}
+  - component: {fileID: 1858466080}
   m_Layer: 0
   m_Name: quitBtn
   m_TagString: Untagged
@@ -2895,6 +2938,19 @@ MonoBehaviour:
   hoverBehaviour_Move: 0
   hoverBehaviour_Move_Amount: {x: 0, y: 0}
   triggerMouseOutFuncOnClick: 1
+--- !u!114 &1858466080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858466077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94fd6199ec1434f907af2de29b7dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSchemeType: 2
 --- !u!1 &1986893514
 GameObject:
   m_ObjectHideFlags: 0
@@ -3116,6 +3172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2043860423}
   - component: {fileID: 2043860424}
+  - component: {fileID: 2043860425}
   m_Layer: 0
   m_Name: playBtn
   m_TagString: Untagged
@@ -3166,6 +3223,19 @@ MonoBehaviour:
   hoverBehaviour_Move: 0
   hoverBehaviour_Move_Amount: {x: 0, y: 0}
   triggerMouseOutFuncOnClick: 1
+--- !u!114 &2043860425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043860422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94fd6199ec1434f907af2de29b7dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSchemeType: 2
 --- !u!1 &2061281491
 GameObject:
   m_ObjectHideFlags: 0
