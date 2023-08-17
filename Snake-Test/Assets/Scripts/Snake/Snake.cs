@@ -1,26 +1,12 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using GameHouse.Snake.Config;
 using UnityEngine;
-using CodeMonkey;
-using CodeMonkey.Utils;
 using GameHouse.Snake.Services;
 using GameHouse.Snake.Sounds;
 
 namespace GameHouse.Snake.GamePlay
 {
-    public partial class Snake : MonoBehaviour, ISnake
+    public class Snake : MonoBehaviour, ISnake
     {
         private enum State
         {
@@ -43,12 +29,12 @@ namespace GameHouse.Snake.GamePlay
         private ILevelGridModule _levelGridModule;
         private IFoodSpawnerModule _foodSpawnerModule;
 
-        private void Awake()
+        private void Init(GamePlayConfig gamePlayConfig)
         {
             _soundService = ServiceLocator.GetService<ISoundService>();
 
-            gridPosition = new Vector2Int(10, 10);
-            gridMoveTimerMax = .2f;
+            gridPosition = gamePlayConfig.SnakeInitialPosition;
+            gridMoveTimerMax = gamePlayConfig.SnakeSpeed;
             gridMoveTimer = gridMoveTimerMax;
             _gridMoveSnakeDirectionTypes = SnakeDirectionTypes.Right;
 
@@ -114,76 +100,78 @@ namespace GameHouse.Snake.GamePlay
         public void HandleGridMovement()
         {
             gridMoveTimer += Time.deltaTime;
-            if (gridMoveTimer >= gridMoveTimerMax)
+            if (!(gridMoveTimer >= gridMoveTimerMax))
             {
-                gridMoveTimer -= gridMoveTimerMax;
-
-                //SoundManager.PlaySound(SoundManager.Sound.SnakeMove);
-
-                ISnakeMovePosition previousSnakeMovePosition = null;
-                if (snakeMovePositionList.Count > 0)
-                {
-                    previousSnakeMovePosition = snakeMovePositionList[0];
-                }
-
-                ISnakeMovePosition snakeMovePosition =
-                    new SnakeMovePosition(previousSnakeMovePosition, gridPosition, _gridMoveSnakeDirectionTypes);
-                snakeMovePositionList.Insert(0, snakeMovePosition);
-
-                Vector2Int gridMoveDirectionVector;
-                switch (_gridMoveSnakeDirectionTypes)
-                {
-                    default:
-                    case SnakeDirectionTypes.Right:
-                        gridMoveDirectionVector = new Vector2Int(+1, 0);
-                        break;
-                    case SnakeDirectionTypes.Left:
-                        gridMoveDirectionVector = new Vector2Int(-1, 0);
-                        break;
-                    case SnakeDirectionTypes.Up:
-                        gridMoveDirectionVector = new Vector2Int(0, +1);
-                        break;
-                    case SnakeDirectionTypes.Down:
-                        gridMoveDirectionVector = new Vector2Int(0, -1);
-                        break;
-                }
-
-                gridPosition += gridMoveDirectionVector;
-
-                gridPosition = _levelGridModule.ValidateGridPosition(gridPosition);
-
-                bool snakeAteFood = _foodSpawnerModule.TrySnakeEatFood(gridPosition);
-                if (snakeAteFood)
-                {
-                    // Snake ate food, grow body
-                    snakeBodySize++;
-                    CreateSnakeBodyPart();
-                    _soundService.PlaySound(SoundTypes.SnakeEat);
-                }
-
-                if (snakeMovePositionList.Count >= snakeBodySize + 1)
-                {
-                    snakeMovePositionList.RemoveAt(snakeMovePositionList.Count - 1);
-                }
-
-                UpdateSnakeBodyParts();
-
-                foreach (ISnakeBodyPart snakeBodyPart in snakeBodyPartList)
-                {
-                    Vector2Int snakeBodyPartGridPosition = snakeBodyPart.GetGridPosition();
-                    if (gridPosition == snakeBodyPartGridPosition)
-                    {
-                        // Game Over!
-                        //CMDebug.TextPopup("DEAD!", transform.position);
-                        state = State.Dead;
-                        ServiceLocator.GetService<IGamePlayService>().SnakeDied();
-                        _soundService.PlaySound(SoundTypes.SnakeDie);
-                    }
-                }
-
-                transform.position = new Vector3(gridPosition.x, gridPosition.y);
-                transform.eulerAngles = new Vector3(0, 0, GetAngleFromVector(gridMoveDirectionVector) - 90);
+                return;
             }
+            
+            gridMoveTimer -= gridMoveTimerMax;
+
+            //SoundManager.PlaySound(SoundManager.Sound.SnakeMove);
+
+            ISnakeMovePosition previousSnakeMovePosition = null;
+            if (snakeMovePositionList.Count > 0)
+            {
+                previousSnakeMovePosition = snakeMovePositionList[0];
+            }
+
+            ISnakeMovePosition snakeMovePosition =
+                new SnakeMovePosition(previousSnakeMovePosition, gridPosition, _gridMoveSnakeDirectionTypes);
+            snakeMovePositionList.Insert(0, snakeMovePosition);
+
+            Vector2Int gridMoveDirectionVector;
+            switch (_gridMoveSnakeDirectionTypes)
+            {
+                default:
+                case SnakeDirectionTypes.Right:
+                    gridMoveDirectionVector = new Vector2Int(+1, 0);
+                    break;
+                case SnakeDirectionTypes.Left:
+                    gridMoveDirectionVector = new Vector2Int(-1, 0);
+                    break;
+                case SnakeDirectionTypes.Up:
+                    gridMoveDirectionVector = new Vector2Int(0, +1);
+                    break;
+                case SnakeDirectionTypes.Down:
+                    gridMoveDirectionVector = new Vector2Int(0, -1);
+                    break;
+            }
+
+            gridPosition += gridMoveDirectionVector;
+
+            gridPosition = _levelGridModule.ValidateGridPosition(gridPosition);
+
+            bool snakeAteFood = _foodSpawnerModule.TrySnakeEatFood(gridPosition);
+            if (snakeAteFood)
+            {
+                // Snake ate food, grow body
+                snakeBodySize++;
+                CreateSnakeBodyPart();
+                _soundService.PlaySound(SoundTypes.SnakeEat);
+            }
+
+            if (snakeMovePositionList.Count >= snakeBodySize + 1)
+            {
+                snakeMovePositionList.RemoveAt(snakeMovePositionList.Count - 1);
+            }
+
+            UpdateSnakeBodyParts();
+
+            foreach (ISnakeBodyPart snakeBodyPart in snakeBodyPartList)
+            {
+                Vector2Int snakeBodyPartGridPosition = snakeBodyPart.GetGridPosition();
+                if (gridPosition == snakeBodyPartGridPosition)
+                {
+                    // Game Over!
+                    //CMDebug.TextPopup("DEAD!", transform.position);
+                    state = State.Dead;
+                    ServiceLocator.GetService<IGamePlayService>().SnakeDied();
+                    _soundService.PlaySound(SoundTypes.SnakeDie);
+                }
+            }
+
+            transform.position = new Vector3(gridPosition.x, gridPosition.y);
+            transform.eulerAngles = new Vector3(0, 0, GetAngleFromVector(gridMoveDirectionVector) - 90);
         }
 
         public void CreateSnakeBodyPart()

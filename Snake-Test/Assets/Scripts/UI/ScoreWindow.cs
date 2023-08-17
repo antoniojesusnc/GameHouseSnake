@@ -18,6 +18,10 @@ using UnityEngine.UI;
 
 public class ScoreWindow : MonoBehaviour {
 
+    private const string SCORE_TEXT = "scoreText";
+    private const string HIGH_SCORE_TEXT = "highscoreText";
+
+    
     private static ScoreWindow instance;
 
     private Text scoreText;
@@ -26,7 +30,7 @@ public class ScoreWindow : MonoBehaviour {
     
     private void Awake() {
         instance = this;
-        scoreText = transform.Find("scoreText").GetComponent<Text>();
+        scoreText = transform.Find(SCORE_TEXT).GetComponent<Text>();
         _scoreServiceService = ServiceLocator.GetService<IScoreService>();
     }
 
@@ -45,7 +49,7 @@ public class ScoreWindow : MonoBehaviour {
 
     private void UpdateHighscore() {
         int highscore = _scoreServiceService.GetHighscore();
-        transform.Find("highscoreText").GetComponent<Text>().text = "HIGHSCORE\n" + highscore.ToString();
+        transform.Find(HIGH_SCORE_TEXT).GetComponent<Text>().text = "HIGHSCORE\n" + highscore.ToString();
     }
 
     public static void HideStatic() {

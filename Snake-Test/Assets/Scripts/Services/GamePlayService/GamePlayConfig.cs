@@ -7,5 +7,11 @@ namespace GameHouse.Snake.Config
     {
         [field: Header("World"), SerializeField]
         public Vector2Int GridSize { get; private set; }
+        
+        [field: SerializeField]
+        public Vector2Int SnakeInitialPosition { get; private set; }
+        
+        [field: Header("Snake"), SerializeField]
+        public float SnakeSpeed { get; private set; }
     }
 }

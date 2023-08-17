@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: GamePlayConfig
   m_EditorClassIdentifier: 
   <GridSize>k__BackingField: {x: 20, y: 20}
+  <SnakeInitialPosition>k__BackingField: {x: 10, y: 10}
+  <SnakeSpeed>k__BackingField: 0.2

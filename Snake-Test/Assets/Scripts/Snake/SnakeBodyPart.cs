@@ -6,6 +6,8 @@ namespace GameHouse.Snake.GamePlay
 {
     public class SnakeBodyPart : ISnakeBodyPart
     {
+        private readonly Vector3 BODY_PART_OFFSET_WHEN_TURN = new Vector3(.2f, .2f);
+        
         private ISnakeMovePosition snakeMovePosition;
         private Transform transform;
 
@@ -38,11 +40,11 @@ namespace GameHouse.Snake.GamePlay
                             break;
                         case SnakeDirectionTypes.Left: // Previously was going Left
                             angle = 0 + 45;
-                            transform.position += new Vector3(.2f, .2f);
+                            transform.position += BODY_PART_OFFSET_WHEN_TURN;
                             break;
                         case SnakeDirectionTypes.Right: // Previously was going Right
                             angle = 0 - 45;
-                            transform.position += new Vector3(-.2f, .2f);
+                            transform.position += BODY_PART_OFFSET_WHEN_TURN;
                             break;
                     }
 
@@ -55,11 +57,11 @@ namespace GameHouse.Snake.GamePlay
                             break;
                         case SnakeDirectionTypes.Left: // Previously was going Left
                             angle = 180 - 45;
-                            transform.position += new Vector3(.2f, -.2f);
+                            transform.position += BODY_PART_OFFSET_WHEN_TURN;
                             break;
                         case SnakeDirectionTypes.Right: // Previously was going Right
                             angle = 180 + 45;
-                            transform.position += new Vector3(-.2f, -.2f);
+                            transform.position += BODY_PART_OFFSET_WHEN_TURN;
                             break;
                     }
 
@@ -72,11 +74,11 @@ namespace GameHouse.Snake.GamePlay
                             break;
                         case SnakeDirectionTypes.Down: // Previously was going Down
                             angle = 180 - 45;
-                            transform.position += new Vector3(-.2f, .2f);
+                            transform.position += BODY_PART_OFFSET_WHEN_TURN;
                             break;
                         case SnakeDirectionTypes.Up: // Previously was going Up
                             angle = 45;
-                            transform.position += new Vector3(-.2f, -.2f);
+                            transform.position += BODY_PART_OFFSET_WHEN_TURN;
                             break;
                     }
 
@@ -89,11 +91,11 @@ namespace GameHouse.Snake.GamePlay
                             break;
                         case SnakeDirectionTypes.Down: // Previously was going Down
                             angle = 180 + 45;
-                            transform.position += new Vector3(.2f, .2f);
+                            transform.position += BODY_PART_OFFSET_WHEN_TURN;
                             break;
                         case SnakeDirectionTypes.Up: // Previously was going Up
                             angle = -45;
-                            transform.position += new Vector3(.2f, -.2f);
+                            transform.position += BODY_PART_OFFSET_WHEN_TURN;
                             break;
                     }
 
