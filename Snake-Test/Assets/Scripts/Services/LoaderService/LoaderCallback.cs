@@ -1,31 +1,20 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
-using System.Collections;
-using System.Collections.Generic;
-using GameHouse.Snake.Services;
+﻿using GameHouse.Snake.Services;
 using UnityEngine;
 
-/*
- * Works alongside the Loader class to notify it when the current level has updated the screen
- * */
-public class LoaderCallback : MonoBehaviour {
+namespace GameHouse.Snake.Loader
+{
+    public class LoaderCallback : MonoBehaviour
+    {
 
-    private bool firstUpdate = true;
+        private bool firstUpdate = true;
 
-    private void Update() {
-        if (firstUpdate) {
-            firstUpdate = false;
-            ServiceLocator.GetService<ILoaderService>().LoaderCallback();
+        private void Update()
+        {
+            if (firstUpdate)
+            {
+                firstUpdate = false;
+                ServiceLocator.GetService<ILoaderService>().LoaderCallback();
+            }
         }
     }
 }

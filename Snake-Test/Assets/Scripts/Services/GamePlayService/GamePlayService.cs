@@ -1,6 +1,7 @@
 using GameHouse.Snake.Config;
 using GameHouse.Snake.GamePlay;
 using GameHouse.Snake.Pool;
+using GameHouse.Snake.UI;
 using UnityEngine;
 
 namespace GameHouse.Snake.Services

@@ -1,3 +1,4 @@
+using GameHouse.Snake.Clock;
 using UnityEngine;
 
 namespace GameHouse.Snake.Services

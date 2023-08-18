@@ -1,17 +1,4 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
-using UnityEngine;
-using CodeMonkey.Utils;
+﻿using UnityEngine;
 using GameHouse.Snake.Config;
 using GameHouse.Snake.Sounds;
 
